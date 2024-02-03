@@ -40,6 +40,15 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
                         _company.住所1 = "文京区大塚1-5-18";
                     }
                     break;
+                case "darkness":
+                    {
+                        _company = new Company();
+                        _company.Code = "darkness";
+                        _company.Name = "デモ株式会社";
+                        _company.住所1 = "文京区大塚1-5-18";
+
+                    }
+                    break;
                 default:
 
                     break;
