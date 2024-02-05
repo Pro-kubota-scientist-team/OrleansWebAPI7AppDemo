@@ -1,4 +1,6 @@
-﻿namespace OrleansWebAPI7AppDemo.Models.ProKubota
+﻿using Orleans;
+
+namespace OrleansWebAPI7AppDemo.Models.ProKubota
 {
     [GenerateSerializer]
     public class FinancialTest
