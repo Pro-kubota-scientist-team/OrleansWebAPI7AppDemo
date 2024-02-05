@@ -44,7 +44,7 @@ namespace OrleansWebAPI7AppDemo.Controllers.Journal
             // グレインの呼び出し
             var campanyGrain = _grains.GetGrain<IJournalItemGrain>(id);
             // 指定グレインのGETメソッドを実行して結果を取得する
-            var journalItem = await campanyGrain.Get();
+            var journalItem = await campanyGrain.GetJournalItem();
             if (journalItem == null)
             {
                 return NotFound();

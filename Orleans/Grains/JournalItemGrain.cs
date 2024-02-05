@@ -10,6 +10,7 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
     public class JournalItemGrain : Grain , IJournalItemGrain
     {
         private JournalItem? _model { get; set; }
+        private List<JournalItemDetail>? _items { get; set; }
 
         public JournalItemGrain()
         {
@@ -35,15 +36,12 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
                         _model.年度 = "2023";
                         _model.区分 = 区分.設定なし;
                         _model.会計単位 = 会計単位.本社;
-                        _model.消費税 = 消費税.設定なし;
                         _model.対象期間 = "";
-                        _model.科目 = お気に入り科目.設定なし;
-                        _model.補助 = "";
-                        _model.名称 = "";
-                        _model.金額 = "";
                         _model.消費税科目 = "";
-                        _model.部門 = "";
-                        _model.摘要 = "";
+
+                        _items = new List<JournalItemDetail>();
+                        _items.Add(new JournalItemDetail() { 仕訳番号 = 1, 行番号 = 1, });
+                        _items.Add(new JournalItemDetail() { 仕訳番号 = 1, 行番号 = 2, });
 
 
 
@@ -56,15 +54,12 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
                         _model.年度 = "2023";
                         _model.区分 = 区分.期末決算;
                         _model.会計単位 = 会計単位.本社;
-                        _model.消費税 = 消費税.原則課税;
                         _model.対象期間 = "";
-                        _model.科目 = お気に入り科目.売掛金;
-                        _model.補助 = "";
-                        _model.名称 = "";
-                        _model.金額 = "";
                         _model.消費税科目 = "";
-                        _model.部門 = "";
-                        _model.摘要 = "";
+
+                        _items = new List<JournalItemDetail>();
+                        _items.Add(new JournalItemDetail() { 仕訳番号 = 2, 行番号 = 1, });
+                        _items.Add(new JournalItemDetail() { 仕訳番号 = 2, 行番号 = 2, });
 
                     }
                     break;
@@ -77,9 +72,15 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
             return base.OnActivateAsync(cancellationToken);
         }
 
-        public Task<JournalItem?> Get()
+
+
+        public Task<JournalItem?> GetJournalItem()
         {
             return Task.FromResult(_model);
+        }
+        public Task<List<JournalItemDetail>?> GetJournalItemDetails()
+        {
+            return Task.FromResult(_items);
         }
 
         public Task Set(JournalItem JournalItem)

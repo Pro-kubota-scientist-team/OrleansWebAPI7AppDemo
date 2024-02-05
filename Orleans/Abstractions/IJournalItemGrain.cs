@@ -5,7 +5,10 @@ namespace OrleansWebAPI7AppDemo.Orleans.Abstractions
 {
     public interface IJournalItemGrain : IGrainWithStringKey
     {
-        Task<JournalItem?> Get();
+        Task<JournalItem?> GetJournalItem();
+
+        Task<List<JournalItemDetail>?> GetJournalItemDetails();
+
         Task Set(JournalItem value);
 
         Task Remove();
