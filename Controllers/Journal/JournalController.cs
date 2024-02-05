@@ -16,7 +16,7 @@ namespace OrleansWebAPI7AppDemo.Controllers.Journal
             _grains = grains;
         }
         /// <summary>
-        /// 勘定科目を取得します
+        /// 仕訳番号を取得します
         /// </summary>
         /// <returns></returns>
         [HttpGet()]
@@ -26,14 +26,14 @@ namespace OrleansWebAPI7AppDemo.Controllers.Journal
             var items = new List<string>();
             // ↓↓　一般的にはデータベースから取得する
             // SELECT * FROM AccountItem;
-            items.Add("100");
-            items.Add("700");
+            items.Add("1");
+            items.Add("2");
             // ↑↑　
             return items;
         }
 
         /// <summary>
-        /// 指定したコードの勘定科目を取得します
+        /// 指定したコードの仕訳帳を取得します
         /// </summary>
         /// <returns></returns>
         [HttpGet()]

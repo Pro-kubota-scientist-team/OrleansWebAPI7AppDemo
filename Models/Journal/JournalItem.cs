@@ -3,50 +3,53 @@
     [GenerateSerializer]
     public class JournalItem
     {
-        // 年度
+        // ID
         [Id(0)]
+        public int 仕訳番号 { get; set; } = int.MaxValue;
+        // 年度
+        [Id(1)]
         public string 年度 { get; set; } = String.Empty;
         // 区分
-        [Id(1)]
+        [Id(2)]
         public 区分 区分 { get; set; } = 区分.設定なし;
         // 会計単位
-        [Id(2)]
+        [Id(3)]
         public 会計単位 会計単位 { get; set; } = 会計単位.設定なし;
         // 消費税
-        [Id(3)]
+        [Id(4)]
         public 消費税 消費税 { get; set; } = 消費税.設定なし;
         // 対象期間
-        [Id(4)]
+        [Id(5)]
         public string 対象期間 { get; set; } = String.Empty;
         /// <summary>
         /// 貸借
         /// 0：借方科目
         /// 1：貸方科目
         /// </summary>
-        [Id(5)]
+        [Id(6)]
         public お気に入り科目 科目 { get; set; } = お気に入り科目.設定なし;
 
         // 補助
-        [Id(6)]
+        [Id(7)]
         public string 補助 { get; set;} = String.Empty;
 
-        [Id(7)]
+        [Id(8)]
         public string 名称 { get; set;} = String.Empty;
 
-        [Id(8)]
+        [Id(9)]
         public string 金額 { get; set;} = String.Empty;
 
         // 勘定科目消費税
-        [Id(9)]
+        [Id(10)]
         public 消費税区分 消費税区分 { get; set; } = 消費税区分.対象外;
         // 勘定科目帳表種類
-        [Id(10)]
+        [Id(11)]
         public string 消費税科目 { get; set; } = String.Empty;
         // 勘定科目集計先科目
-        [Id(11)]
+        [Id(12)]
         public string 部門 { get; set; } = String.Empty;
         // 勘定科目帳簿区分
-        [Id(8)]
+        [Id(13)]
         public string 摘要 { get; set; } = String.Empty;
 
     }
