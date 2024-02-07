@@ -45,8 +45,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-builder.Services.AddControllers();
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
