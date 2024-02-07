@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MyAllowAllHeadersPolicy",
         policy =>
         {
-            policy.WithOrigins("https://*.example.com")
+            policy.WithOrigins("http://localhost:3000/*")
                    .AllowAnyHeader();
         });
 });

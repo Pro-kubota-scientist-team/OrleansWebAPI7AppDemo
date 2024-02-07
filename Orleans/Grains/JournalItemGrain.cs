@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Orleans.Runtime;
 using OrleansCodeGen.Orleans.Serialization.Codecs;
-using OrleansWebAPI7AppDemo.Models.Accounting;
 using OrleansWebAPI7AppDemo.Models.Journal;
 using OrleansWebAPI7AppDemo.Orleans.Abstractions;
 
@@ -39,13 +38,32 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
                         _model.対象期間 = "";
                         _model.消費税科目 = "";
 
-                        _items = new List<JournalItemDetail>();
-                        _items.Add(new JournalItemDetail() { 仕訳番号 = 1, 行番号 = 1, });
-                        _items.Add(new JournalItemDetail() { 仕訳番号 = 1, 行番号 = 2, });
+                        _items = new List<JournalItemDetail> 
+                        { 
+                           new JournalItemDetail() {
+                                仕訳番号 = 1,
+                                行番号 = 1,
+                                借方科目 = お気に入り科目.消耗品費,
+                                借方補助 = "",
+                                借方金額 = "10000",
+                                借方部門 = "営業部",
+                                借方摘要 = "事務用品購入",
+                                借方消費税区分 = 消費税区分.対象外,
+                                借方消費税 = 消費税.原則課税,
+                                貸方科目 = お気に入り科目.消耗品費,
+                                貸方補助 = "",
+                                貸方金額 = "10000",
+                                貸方部門 = "営業部",
+                                貸方摘要 = "事務用品購入",
+                                貸方消費税区分 = 消費税区分.対象外,
+                                貸方消費税 = 消費税.原則課税,
+                                名称 = "ノートPC"
+                            },
+                        };
 
 
 
-                    }
+            }
                     break;
                 case "2":
                     {
@@ -87,6 +105,12 @@ namespace OrleansWebAPI7AppDemo.Orleans.Grains
         {
             // UPDATE company SET 住所1 = '**** ;
             _model = JournalItem;
+            return Task.CompletedTask;
+        }
+
+        public Task Set(JournalItemDetail JournalItemDetail)
+        {
+            _items = new List<JournalItemDetail>();
             return Task.CompletedTask;
         }
 

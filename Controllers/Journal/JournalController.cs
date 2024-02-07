@@ -42,16 +42,23 @@ namespace OrleansWebAPI7AppDemo.Controllers.Journal
         public async Task<IActionResult> Get(String id)
         {
             // グレインの呼び出し
-            var campanyGrain = _grains.GetGrain<IJournalItemGrain>(id);
+            var journalGrain = _grains.GetGrain<IJournalItemGrain>(id);
             // 指定グレインのGETメソッドを実行して結果を取得する
-            var journalItem = await campanyGrain.GetJournalItem();
+            var journalItem = await journalGrain.GetJournalItem();
+            var journalItemDetail = await journalGrain.GetJournalItemDetails();
             if (journalItem == null)
             {
                 return NotFound();
             }
+            else if (journalItemDetail == null)
+            {
+                var result = new { journalItem = journalItem, journalItemDetail = ""};
+                return Ok(result);
+            }
             else
             {
-                return Ok(journalItem);
+                var result = new { journalItem = journalItem, journalItemDetail = journalItemDetail};
+                return Ok(result);
             }
         }
     }
